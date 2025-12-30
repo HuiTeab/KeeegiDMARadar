@@ -1,0 +1,19 @@
+{
+  "targetProcess": "example.exe",
+  "updateInterval": 16,
+  "radar": {
+    "size": 400,
+    "range": 100,
+    "centerX": 200,
+    "centerY": 200
+  },
+  "offsets": {
+    "baseAddress": "0x00000000",
+    "entityList": "0x00000000",
+    "localPlayer": "0x00000000"
+  },
+  "memory": {
+    "maxEntities": 64,
+    "scanInterval": 100
+  }
+}
