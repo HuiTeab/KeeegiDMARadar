@@ -1,0 +1,76 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+
+	<!-- SignalR AOT Compatibility -->
+	<ItemGroup>
+		<RuntimeHostConfigurationOption Include="Microsoft.AspNetCore.SignalR.Hub.IsCustomAwaitableSupported" Value="false" Trim="true" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<!-- GC Tuning for optimal performance -->
+		<ServerGarbageCollection>false</ServerGarbageCollection>
+		<ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+		<!-- DATAS GC Mode | https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector#enabling-or-disabling-datas -->
+		<GarbageCollectionAdaptationMode>1</GarbageCollectionAdaptationMode>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<PublishAot>true</PublishAot>
+		<HighEntropyVA>true</HighEntropyVA>
+		<OptimizationPreference>Speed</OptimizationPreference>
+		<CetCompat>false</CetCompat>
+		<DebuggerSupport>true</DebuggerSupport>
+		<StackTraceSupport>true</StackTraceSupport>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="ImGui.NET" Version="1.91.6.1" />
+		<PackageReference Include="Silk.NET.Input" Version="2.22.0" />
+		<PackageReference Include="Silk.NET.OpenGL" Version="2.22.0" />
+		<PackageReference Include="Silk.NET.OpenGL.Extensions.ImGui" Version="2.22.0" />
+		<PackageReference Include="Silk.NET.Windowing" Version="2.22.0" />
+		<PackageReference Include="SkiaSharp" Version="3.119.1" />
+		<PackageReference Include="Collections.Pooled.V2" Version="2.2.2" />
+		<PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="10.1.0" />
+		<PackageReference Include="Svg.Skia" Version="3.2.1" />
+		<PackageReference Include="Velopack" Version="0.0.1298" />
+		<PackageReference Include="VmmSharpEx" Version="3.110.12" />
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+		<PackageReference Include="Open.Nat.V2" Version="3.1.1" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <Folder Include="UI\Misc\" />
+	  <Folder Include="UI\Hotkeys\" />
+	  <Folder Include="UI\Skia\" />
+	</ItemGroup>
+
+</Project>
