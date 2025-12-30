@@ -15,8 +15,7 @@ namespace KeeegiDMARadar
             Console.WriteLine();
 
             // Load configuration
-            string configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "..", "config", "config.json");
-            configPath = Path.GetFullPath(configPath);
+            string configPath = FindConfigFile() ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
             var config = ConfigLoader.LoadConfiguration(configPath);
 
             Console.WriteLine($"Target Process: {config.TargetProcess}");
@@ -83,6 +82,27 @@ namespace KeeegiDMARadar
                 memoryReader.Detach();
                 Console.WriteLine("Goodbye!");
             }
+        }
+
+        /// <summary>
+        /// Search for config.json in the directory tree
+        /// </summary>
+        private static string? FindConfigFile()
+        {
+            var currentDir = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+            
+            // Search up to 5 levels up the directory tree
+            for (int i = 0; i < 5 && currentDir != null; i++)
+            {
+                var configPath = Path.Combine(currentDir.FullName, "config", "config.json");
+                if (File.Exists(configPath))
+                {
+                    return configPath;
+                }
+                currentDir = currentDir.Parent;
+            }
+            
+            return null;
         }
     }
 }

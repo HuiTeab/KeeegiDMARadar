@@ -17,7 +17,7 @@ KeeegiDMARadar is a C# application that provides DMA-based memory reading capabi
 ## Requirements
 
 - Windows OS
-- .NET 6.0 or higher
+- .NET 8.0 or higher
 - DMA hardware (or kernel-level memory access)
 - Visual Studio 2022 or JetBrains Rider (for development)
 
